@@ -29,15 +29,15 @@ public class AddClient {
             ADDButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    name = textField1.getText();
 
-                    frame2.dispose();
-                    addClient(name);
+                   if ( textField1.getText().isEmpty()){
 
-
-                    //  for (int i = 0; i < clientList.size(); i++){
-                    //   comboBox.addItem(clientList.get(i).toString());
-                    // }
+                   }
+                   else {
+                       name = textField1.getText();
+                       frame2.dispose();
+                       addClient(name);
+                   }
                 }
             });
 
@@ -54,7 +54,4 @@ public class AddClient {
         clientList.add(name);
     }
 
-    public JComboBox getComboBox() {
-        return comboBox;
-    }
 }
