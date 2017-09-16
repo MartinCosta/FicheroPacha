@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="interfaceMain">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="FrameMain">
   <grid id="27dc6" binding="jPanelMain" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -60,7 +60,7 @@
           <text value="Save"/>
         </properties>
       </component>
-      <grid id="70d70" binding="jPanel1" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="70d70" binding="jPanel1" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -78,7 +78,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="d2aef" class="javax.swing.JButton" binding="button1" default-binding="true">
+          <component id="d2aef" class="javax.swing.JButton" binding="addClient">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="38" height="15"/>
@@ -96,6 +96,14 @@
             </constraints>
             <properties>
               <text value="Cliente: "/>
+            </properties>
+          </component>
+          <component id="f820d" class="javax.swing.JButton" binding="saveClient">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Save Client"/>
             </properties>
           </component>
         </children>
