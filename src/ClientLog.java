@@ -1,44 +1,33 @@
+import com.sun.javafx.UnmodifiableArrayList;
+
 import javax.swing.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class ClientLog {
-
-
-    private String name;
-    private String date;
-    private String color;
+public class ClientLog implements Serializable {
 
 
-    public ClientLog (String name, String date, String color){
 
-        this.name = name;
-        this.date = date;
-        this.color = color;
-    }
-    public ClientLog (String name){
-        this.name = name;
+    private ArrayList<String> clientData;
+
+
+    public ClientLog (String data ){
+
+        this.clientData = new ArrayList<>();
+        clientData.add(data);
     }
 
 
-    public String getColor() {
-        return color;
+    public ArrayList<String> getClientData() {
+        return clientData;
     }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getName() {
-        return name;
-    }
-
 
     @Override
     public String toString() {
-        return (getName() + "\n" +
-                getDate() + "\n" +
-                getColor());
+        return (getClientData().toString());
     }
 
+    /*
     public void addRegister (String date, String color){
         JTextArea newRegister = new JTextArea();
 
@@ -46,6 +35,6 @@ public class ClientLog {
         newRegister.setText(date + "\n");
         newRegister.setText(color + "\n");
     }
-
+*/
 
 }

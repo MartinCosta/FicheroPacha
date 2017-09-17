@@ -8,12 +8,13 @@ public class AddClient {
 
     private JPanel panel12;
     private JFrame frame2;
-    private JTextField textField1;
+    private JTextField clientName;
     private JButton ADDButton;
+    private JLabel Nombre;
+    private JTextField dateAndData;
     private String name;
-    private ArrayList<String> clientList;
-    private FrameMain main;
-    private JComboBox comboBox;
+    private String data;
+
 
     public AddClient () {
 
@@ -22,36 +23,30 @@ public class AddClient {
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.pack();
         frame2.setVisible(true);
-        clientList = new ArrayList<>();
-
 
 
             ADDButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                   if ( textField1.getText().isEmpty()){
+                   if ( clientName.getText().isEmpty()){
 
                    }
                    else {
-                       name = textField1.getText();
+                       name = clientName.getText();
                        frame2.dispose();
-                       addClient(name);
+                       data = dateAndData.getText();
+
                    }
                 }
             });
-
-
         }
 
-
-    public ArrayList<String> getClientList() {
-        return clientList;
+    public String getName() {
+        return name;
     }
 
-    public void addClient(String name) {
-
-        clientList.add(name);
+    public String getData() {
+        return data;
     }
-
 }
