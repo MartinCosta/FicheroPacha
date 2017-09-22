@@ -16,6 +16,7 @@ public class FrameMain {
     private JButton saveClient;
     private JPanel jPanel2a;
     private JTextField pepaLuisaTextField;
+    private JTextArea textArea1;
     private JButton saveLogButton;
     private JTextField textField1;
     private AddClient newClient;
@@ -89,19 +90,12 @@ public class FrameMain {
                 clientNameComboBox = comboBox1.getItemAt(clientNumberComboBox).toString();
                 pepaLuisaTextField.setText(clientNameComboBox);
 
-                textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
+        //        textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
 
             }
         });
-        saveLogButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
 
-
-
-            }
-        });
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
