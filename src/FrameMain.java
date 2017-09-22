@@ -90,7 +90,7 @@ public class FrameMain {
                 clientNameComboBox = comboBox1.getItemAt(clientNumberComboBox).toString();
                 pepaLuisaTextField.setText(clientNameComboBox);
 
-        //        textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
+         //       textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
 
             }
         });
