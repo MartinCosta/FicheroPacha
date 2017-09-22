@@ -34,8 +34,9 @@ public class AddClient {
                    }
                    else {
                        name = clientName.getText();
-                       frame2.dispose();
                        data = dateAndData.getText();
+
+                       frame2.dispose();
 
                    }
                 }

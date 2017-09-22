@@ -32,24 +32,26 @@ public class FrameMain {
 
     public FrameMain  (){
 
-        dataListAllUser = new ArrayList<>();
+
 
         try{
 
-            FileInputStream fis = new FileInputStream("data.tmp");
+            FileInputStream fis = new FileInputStream("DataBase.tmp");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            clientList = (ArrayList<String>)ois.readObject();
+            dataListAllUser = (ArrayList<ClientLog>)ois.readObject();
             ois.close();
         }  catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         catch (IOException e) {
             e.printStackTrace();
-            clientList = new ArrayList<>();
+            dataListAllUser = new ArrayList<>();
         }
-        for(int i = 0; i < clientList.size(); i++){
 
-            comboBox1.addItem(clientList.get(i));
+
+        for(int i = 0; i < dataListAllUser.size(); i++){
+
+            comboBox1.addItem(dataListAllUser.get(i));
         }
 
 
@@ -72,8 +74,7 @@ public class FrameMain {
 
                 clientName = newClient.getName();
                 dataClient = newClient.getData();
-
-                clientList.add(clientName);
+                dataListAllUser.add(new ClientLog(clientName, dataClient));
                 comboBox1.addItem(clientName);
 
             }
@@ -83,12 +84,11 @@ public class FrameMain {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                dataListAllUser.add(new ClientLog(dataClient));
                 clientNumberComboBox = comboBox1.getSelectedIndex();
                 clientNameComboBox = comboBox1.getItemAt(clientNumberComboBox).toString();
                 pepaLuisaTextField.setText(clientNameComboBox);
 
-                textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData().toString());
+                textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
 
             }
         });
@@ -107,7 +107,7 @@ public class FrameMain {
 
 
             try {
-                    FileOutputStream fos = new FileOutputStream("data.tmp");
+                    FileOutputStream fos = new FileOutputStream("DataBase.tmp");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
                     oos.writeObject(clientList);
                      oos.close();

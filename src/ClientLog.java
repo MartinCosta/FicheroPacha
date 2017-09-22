@@ -7,27 +7,25 @@ import java.util.ArrayList;
 public class ClientLog implements Serializable {
 
 
+    private String nameClient;
+    private String clientData;
 
-    private ArrayList<String> clientData;
 
+    public ClientLog (String name, String data ){
 
-    public ClientLog (String data ){
-
-        this.clientData = new ArrayList<>();
-        clientData.add(data);
+        this.clientData = data;
+        this.nameClient = name;
     }
 
-
-    public ArrayList<String> getClientData() {
+    public String getClientData() {
         return clientData;
     }
 
-    @Override
-    public String toString() {
-        return (getClientData().toString());
+    public String getNameClient() {
+        return nameClient;
     }
 
-    /*
+   /*
     public void addRegister (String date, String color){
         JTextArea newRegister = new JTextArea();
 
