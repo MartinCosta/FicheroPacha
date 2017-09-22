@@ -25,7 +25,12 @@ public class ClientLog implements Serializable {
         return nameClient;
     }
 
-   /*
+    @Override
+    public String toString() {
+        return (getNameClient());
+    }
+
+    /*
     public void addRegister (String date, String color){
         JTextArea newRegister = new JTextArea();
 

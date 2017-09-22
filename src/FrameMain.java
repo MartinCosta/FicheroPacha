@@ -42,6 +42,7 @@ public class FrameMain {
             ois.close();
         }  catch (ClassNotFoundException e) {
             e.printStackTrace();
+            dataListAllUser = new ArrayList<>();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class FrameMain {
 
         for(int i = 0; i < dataListAllUser.size(); i++){
 
-            comboBox1.addItem(dataListAllUser.get(i));
+            comboBox1.addItem(dataListAllUser.get(i).toString());
         }
 
 
@@ -109,7 +110,7 @@ public class FrameMain {
             try {
                     FileOutputStream fos = new FileOutputStream("DataBase.tmp");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    oos.writeObject(clientList);
+                    oos.writeObject(dataListAllUser);
                      oos.close();
                     }
             catch(IOException ie) {
