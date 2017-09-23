@@ -1,8 +1,15 @@
+import com.sun.deploy.util.SessionState;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class FrameMain {
 
@@ -39,7 +46,11 @@ public class FrameMain {
 
             FileInputStream fis = new FileInputStream("DataBase.tmp");
             ObjectInputStream ois = new ObjectInputStream(fis);
+
             dataListAllUser = (ArrayList<ClientLog>)ois.readObject();
+            ClientNameComparator comparator = new ClientNameComparator();
+            Collections.sort(dataListAllUser, comparator);
+
             ois.close();
         }  catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -76,8 +87,28 @@ public class FrameMain {
 
                 clientName = newClient.getName();
                 dataClient = newClient.getData();
-                dataListAllUser.add(new ClientLog(clientName, dataClient));
-                comboBox1.addItem(clientName);
+                ClientNameComparator comparator = new ClientNameComparator();
+                Collections.sort(dataListAllUser, comparator);
+
+                String clientNames[] = new String[dataListAllUser.size()];
+                int index = 0;
+                for (ClientLog client : dataListAllUser) {
+                    clientNames[index++] = client.getNameClient();
+                }
+                int newIndex = Arrays.binarySearch(clientNames, clientName);
+
+                if (newIndex >= 0) {
+                    dataListAllUser.add(newIndex,(new ClientLog(clientName, dataClient)));
+
+
+                } else if ( -( newIndex + 1) == dataListAllUser.size()) { // client not found, let's add it at the new index
+                    dataListAllUser.add((new ClientLog(clientName, dataClient)));
+                } else {
+                    int realNewIndex = -( newIndex + 1); // because the binary-seacrch return
+                    dataListAllUser.add(realNewIndex,(new ClientLog(clientName, dataClient)));
+                }
+                comboBox1.updateUI();
+
 
             }
         });
@@ -85,6 +116,7 @@ public class FrameMain {
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
 
                 clientNumberComboBox = comboBox1.getSelectedIndex();
                 clientNameComboBox = comboBox1.getItemAt(clientNumberComboBox).toString();
