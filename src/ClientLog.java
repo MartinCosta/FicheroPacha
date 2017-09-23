@@ -30,6 +30,13 @@ public class ClientLog implements Serializable {
         return (getNameClient());
     }
 
+    public void setClientData(String clientData) {
+        this.clientData = clientData;
+    }
+
+    public void setNameClient(String nameClient) {
+        this.nameClient = nameClient;
+    }
     /*
     public void addRegister (String date, String color){
         JTextArea newRegister = new JTextArea();
