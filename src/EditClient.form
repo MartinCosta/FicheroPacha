@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EditClient">
+  <grid id="27dc6" binding="panel12" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="4644b" class="javax.swing.JTextField" binding="nameField">
+        <constraints border-constraint="North"/>
+        <properties/>
+      </component>
+      <component id="7803" class="javax.swing.JButton" binding="cancelButton">
+        <constraints border-constraint="West"/>
+        <properties>
+          <text value="Cancelar"/>
+        </properties>
+      </component>
+      <hspacer id="9da2e">
+        <constraints border-constraint="Center"/>
+      </hspacer>
+      <component id="4030f" class="javax.swing.JButton" binding="saveButon">
+        <constraints border-constraint="East"/>
+        <properties>
+          <text value="Aceptar"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

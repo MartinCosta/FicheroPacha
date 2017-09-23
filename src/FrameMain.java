@@ -1,11 +1,15 @@
+import interfaces.ISaver;
+
+import javax.naming.Context;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FrameMain {
+public class FrameMain implements ISaver{
 
+    private static ISaver mSaver;
     private JFrame frame;
     private JPanel jPanelMain;
     private JPanel jPanel1;
@@ -13,28 +17,19 @@ public class FrameMain {
     private JComboBox comboBox1;
     private JButton addClient;
     private JButton saveButton;
-    private JButton saveClient;
     private JPanel jPanel2a;
-    private JTextField pepaLuisaTextField;
-    private JTextArea textArea1;
-    private JButton saveLogButton;
-    private JTextField textField1;
+    private JTextArea dataText;
     private AddClient newClient;
     private ArrayList<ClientLog> dataListAllUser;
-    private int clientNumber;
-    private String clientName;
-    private ArrayList<String> clientList;
-    private String dataClient;
-    private ArrayList<String> dataPerUser;
+    private JTextField clientNameJText;
+    private JButton deleteButton;
+    private JButton editButton;
     private int clientNumberComboBox;
     private String clientNameComboBox;
 
 
-
-    public FrameMain  (){
-
-
-
+    public FrameMain(){
+        mSaver = this;
         try{
 
             FileInputStream fis = new FileInputStream("DataBase.tmp");
@@ -56,29 +51,11 @@ public class FrameMain {
             comboBox1.addItem(dataListAllUser.get(i).toString());
         }
 
-
-        saveClient.setEnabled(false);
-
         addClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                newClient = new AddClient();
-                saveClient.setEnabled(true);
-            }
-        });
-
-
-        saveClient.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveClient.setEnabled(false);
-
-                clientName = newClient.getName();
-                dataClient = newClient.getData();
-                dataListAllUser.add(new ClientLog(clientName, dataClient));
-                comboBox1.addItem(clientName);
-
+                newClient = new AddClient(mSaver);
             }
         });
 
@@ -88,18 +65,15 @@ public class FrameMain {
 
                 clientNumberComboBox = comboBox1.getSelectedIndex();
                 clientNameComboBox = comboBox1.getItemAt(clientNumberComboBox).toString();
-                pepaLuisaTextField.setText(clientNameComboBox);
-
-         //       textField1.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
-
+                clientNameJText.setText(clientNameComboBox);
+                dataText.setText(dataListAllUser.get(clientNumberComboBox).getClientData());
             }
         });
-
 
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+              dataListAllUser.get(clientNumberComboBox).setClientData(dataText.getText());
 
             try {
                     FileOutputStream fos = new FileOutputStream("DataBase.tmp");
@@ -112,6 +86,18 @@ public class FrameMain {
                     }
                   }
         });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DeleteClient deleteClient = new DeleteClient (mSaver);
+            }
+        });
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditClient editClient = new EditClient(mSaver);
+            }
+        });
     }
 
     public void newFrame (){
@@ -121,7 +107,30 @@ public class FrameMain {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
 
+    @Override
+    public void save(String name, String data) {
+        dataListAllUser.add(new ClientLog(name, data));
+        comboBox1.addItem(name);
+    }
+
+    @Override
+    public void delete() {
+        dataListAllUser.remove(clientNumberComboBox);
+        comboBox1.removeItemAt(clientNumberComboBox);
+    }
+
+    @Override
+    public String getName(){
+        return clientNameComboBox;
+    }
+
+    @Override
+    public void setName (String name){
+        dataListAllUser.get(clientNumberComboBox).setNameClient(name);
+       comboBox1.removeItemAt(clientNumberComboBox);
+       comboBox1.insertItemAt(name,clientNumberComboBox);
     }
 
 }
